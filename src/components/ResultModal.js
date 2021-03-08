@@ -17,9 +17,11 @@ function ResultModal({
     <>
       <div className="background"></div>
       <div className="modal">
-        <button onClick={onClose}>Close</button>
+        <button onClick={onClose}>
+          <i className="far fa-window-close fa-2x"></i>
+        </button>
         {infoLoading ? (
-          <p>Loading...</p>
+          <p className="loading">Loading...</p>
         ) : (
           <>
             <h3>{title}</h3>

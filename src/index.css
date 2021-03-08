@@ -15,7 +15,8 @@
   padding-top: 25px;
 }
 .type-list {
-  height: 25px;
+  height: 30px;
+  margin-right: 5px;
 }
 #search-type-select {
   height: 100%;
@@ -25,9 +26,12 @@
   outline: none;
   background-color: white;
 }
+.search-wrapper {
+  display: flex;
+}
 .search-element {
   display: flex;
-  height: 25px;
+  height: 30px;
   background-color: white;
 }
 .search-element:focus {
@@ -43,19 +47,28 @@
   background-color: white;
   outline: none;
   border: none;
-  border-radius: 1px;
-  box-shadow: 0 0 2px 1px #333;
-  padding: 0 5px;
+  border-radius: 0 10px 10px 0;
+  /* box-shadow: 0 0 2px 1px #333; */
+  padding: 0 10px;
+  border-left: 1px solid #6c6c7a;
 }
 #search-button:focus {
-  border: none;
+  /* border: none; */
   outline: none;
 }
 #search-button:active {
   background-color: rgba(240, 238, 238, 0.918);
 }
+#search-input {
+  border-radius: 10px 0 0 10px;
+  width: 300px;
+  border: none;
+  font-size: 1rem;
+  padding-left: 10px;
+}
 #search-input:focus {
   outline: none;
+  border: none;
 }
 .main {
   padding-top: 100px;
@@ -75,19 +88,20 @@
 }
 .pagination-button {
   display: none;
-  background-color: #6c6c7a;
+  background-color: #6c6c7a00;
   border: none;
   width: 50px;
   height: 25px;
   margin-top: 5px;
 }
 .pagination-buttons {
-  background-color: #6c6c7a;
+  background-color: #6c6c7a00;
   position: fixed;
   top: 100px;
 }
 .pagination-buttons i {
-  background-color: #6c6c7a;
+  background-color: #6c6c7a00;
+  color: #eee;
   margin: auto;
 }
 .pagination-button:active {

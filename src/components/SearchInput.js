@@ -4,7 +4,8 @@ function SearchInput({ onKeyPress, onTextChange }) {
   return (
     <>
       <input
-        type="search"
+        type="text"
+        placeholder="Search movies and TV-shows"
         name="search-input"
         id="search-input"
         className="search-element"

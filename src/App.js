@@ -96,20 +96,22 @@ function App() {
   return (
     <div className="App">
       <nav className="nav-bar">
-        <TypeList
-          onChangeSearchType={(e) => {
-            setCurrentPage(1);
-            setSearchType(e.target.value);
-          }}
-        />
-        <SearchInput
-          onKeyPress={handleKeyPress}
-          onTextChange={(e) => setSearchValue(e.target.value)}
-        />
-        <SearchBtn onClick={() => handleClickSearch()} />
-        {/* <p>current page: {currentPage}</p>
+        <div className="search-wrapper">
+          <TypeList
+            onChangeSearchType={(e) => {
+              setCurrentPage(1);
+              setSearchType(e.target.value);
+            }}
+          />
+          <SearchInput
+            onKeyPress={handleKeyPress}
+            onTextChange={(e) => setSearchValue(e.target.value)}
+          />
+          <SearchBtn onClick={() => handleClickSearch()} />
+          {/* <p>current page: {currentPage}</p>
         <p>page: {page}</p>
         <p>max pages: {maxPages}</p> */}
+        </div>
       </nav>
       <main className="main">
         <Pagination
