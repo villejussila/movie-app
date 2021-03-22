@@ -1,7 +1,7 @@
 .found-result {
   margin: 5px;
   width: 350px;
-  height: 600px;
+  height: 550px;
   overflow: auto;
   background-color: #26262e;
   border-radius: 5px;
@@ -9,10 +9,10 @@
   display: flex;
   flex-direction: column;
   color: white;
-  border: 1px solid #597a78;
+  /* border: 1px solid #597a78; */
 }
 .found-result h3 {
-  margin: 10px;
+  margin: 20px;
   font-weight: lighter;
 }
 .found-result img {

@@ -8,10 +8,8 @@ export function useOmdbAPIGetInfo(initialUrl) {
   const [infoQueryId, setInfoQueryId] = useState("");
   useEffect(() => {
     if (!infoQueryId) return;
-    // setInfoResult(null);
     setIsInfoLoading(true);
     const queryUrl = BASE_URL + "&i=" + infoQueryId;
-    console.log(queryUrl);
     fetch(queryUrl)
       .then((res) => res.json())
       .then((data) => {

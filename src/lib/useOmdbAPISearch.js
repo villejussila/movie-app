@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import {
+  nullOmdbAPISearchResults,
+  removeDuplicateResultsFromArray,
+} from "./utils";
 
 export function useOmdbAPISearch(
   initialUrl = "",
@@ -25,27 +29,37 @@ export function useOmdbAPISearch(
     const queryUrl = `${queryParams.url}&type=${queryParams.type}&page=${queryParams.page}`;
     fetch(queryUrl)
       .then((res) => res.json())
-      .then((data) => {
+      .then((responseData) => {
         if (cancelRequest) return;
-        if (data.Search) {
-          setResult({
-            data: data,
-            totalResults: data.totalResults,
+        if (responseData.Search) {
+          setResult(() => {
+            return {
+              data: removeDuplicateResultsFromArray(
+                responseData.Search,
+                "imdbID"
+              ),
+              totalResults: responseData.totalResults,
+            };
           });
           setIsSearchLoading(false);
           setIsResult(true);
           setIsSearchError(false);
           console.log("fetched");
         } else {
+          setResult({
+            data: nullOmdbAPISearchResults,
+            totalResults: 0,
+          });
           setIsSearchLoading(false);
-          setIsSearchError(true);
-          setIsResult(false);
-          console.log(data);
+          setIsResult(true);
+          setIsSearchError(false);
         }
       })
       .catch((err) => {
         if (cancelRequest) return;
+        setIsSearchLoading(false);
         setIsResult(false);
+        setIsSearchError(true);
         console.log(err);
       });
 

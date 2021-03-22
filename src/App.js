@@ -4,10 +4,11 @@ import SearchBtn from "./components/SearchBtn";
 import ResultList from "./components/ResultList";
 import Pagination from "./components/Pagination";
 import TypeList from "./components/TypeList";
-import { useOmdbAPISearch } from "./useOmdbAPISearch";
-import { useOmdbAPIGetInfo } from "./useOmdbAPIGetInfo";
+import FavoriteList from "./components/FavoriteList";
+import { useOmdbAPISearch } from "./lib/useOmdbAPISearch";
+import { useOmdbAPIGetInfo } from "./lib/useOmdbAPIGetInfo";
 
-const API_KEY = "5f74b61e";
+const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = `http://www.omdbapi.com/?apikey=${API_KEY}`;
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
   const [maxPages, setMaxPages] = useState(1);
   const [idInfo, setIdInfo] = useState("");
 
-  const URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchValue}`;
+  const SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchValue}`;
 
   const [
     { data, totalResults },
@@ -43,11 +44,8 @@ function App() {
   }, [totalResults]);
 
   useEffect(() => {
-    if (!isResult) {
-      setQueryResult(nullSearchResult);
-    }
     if (isResult && data) {
-      setQueryResult(data.Search);
+      setQueryResult(data);
       setHidden(false);
     }
   }, [data, isResult]);
@@ -57,8 +55,7 @@ function App() {
     isInfoLoading,
     isInfoError,
     setInfoQueryId,
-  ] = useOmdbAPIGetInfo(BASE_URL, "");
-  if (isInfoLoading) console.log("Loading");
+  ] = useOmdbAPIGetInfo(BASE_URL);
 
   useEffect(() => {
     setInfoQueryId(idInfo);
@@ -68,12 +65,12 @@ function App() {
     if (e.key !== "Enter") return;
     if (!searchValue) return;
     setCurrentPage(1);
-    setQueryUrl(URL);
+    setQueryUrl(SEARCH_URL);
   }
   function handleClickSearch() {
     if (!searchValue) return;
     setCurrentPage(1);
-    setQueryUrl(URL);
+    setQueryUrl(SEARCH_URL);
   }
   function handleClickImage(id) {
     setIdInfo(id);
@@ -81,16 +78,6 @@ function App() {
   }
   function handleCloseModal() {
     setIsOpenModal(false);
-  }
-  function nullSearchResult() {
-    return [
-      {
-        imdbID: null,
-        Title: null,
-        Year: null,
-        Poster: null,
-      },
-    ];
   }
 
   return (
@@ -112,10 +99,13 @@ function App() {
         <p>page: {page}</p>
         <p>max pages: {maxPages}</p> */}
         </div>
+        <FavoriteList />
       </nav>
       <main className="main">
         <Pagination
           hidden={hidden}
+          currentPage={currentPage}
+          maxPages={maxPages}
           gotoNextPage={() =>
             setCurrentPage((curr) => (curr < maxPages ? curr + 1 : curr))
           }

@@ -13,16 +13,9 @@ function ResultList({
   infoError,
   isOpenModal,
 }) {
-  let hasInfo = false;
-  console.log(infoResults);
-  console.log(searchResults);
-  if (infoResults) {
-    hasInfo = true;
-  } else hasInfo = false;
   return (
     <div className="results">
       {searchResults.map((result) => {
-        console.log(result.imdbID);
         return (
           <Result
             key={result.imdbID}
@@ -34,7 +27,7 @@ function ResultList({
           />
         );
       })}
-      {hasInfo ? (
+      {infoResults ? (
         <ResultModal
           key={infoResults.imdbID}
           title={infoResults.Title}
