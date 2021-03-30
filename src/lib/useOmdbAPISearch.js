@@ -12,6 +12,7 @@ export function useOmdbAPISearch(
   const [result, setResult] = useState({
     resultData: null,
     totalResults: 0,
+    isResultFound: false,
   });
   const [queryParams, setQueryParams] = useState({
     url: initialUrl,
@@ -20,7 +21,7 @@ export function useOmdbAPISearch(
   });
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [isSearchError, setIsSearchError] = useState(false);
-  const [isResult, setIsResult] = useState(true);
+  const [hasSearched, setHasSearched] = useState(true);
 
   useEffect(() => {
     let cancelRequest = false;
@@ -39,26 +40,35 @@ export function useOmdbAPISearch(
                 "imdbID"
               ),
               totalResults: data.totalResults,
+              isResultFound: true,
             };
           });
           setIsSearchLoading(false);
-          setIsResult(true);
+          setHasSearched(true);
           setIsSearchError(false);
           console.log("fetched");
         } else {
+          let nullData = nullOmdbAPISearchResults();
           setResult({
-            resultData: nullOmdbAPISearchResults,
+            resultData: nullData,
             totalResults: 0,
+            isResultFound: false,
           });
           setIsSearchLoading(false);
-          setIsResult(true);
+          setHasSearched(true);
           setIsSearchError(false);
         }
       })
       .catch((err) => {
         if (cancelRequest) return;
+        let nullData = nullOmdbAPISearchResults();
+        setResult({
+          resultData: nullData,
+          totalResults: 0,
+          isResultFound: false,
+        });
         setIsSearchLoading(false);
-        setIsResult(false);
+        setHasSearched(true);
         setIsSearchError(true);
         console.log(err);
       });
@@ -68,5 +78,5 @@ export function useOmdbAPISearch(
     };
   }, [queryParams]);
 
-  return [result, setQueryParams, isSearchLoading, isSearchError, isResult];
+  return [result, setQueryParams, isSearchLoading, isSearchError, hasSearched];
 }
