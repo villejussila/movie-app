@@ -10,7 +10,7 @@ export function useOmdbAPISearch(
   initialSearchType = ""
 ) {
   const [result, setResult] = useState({
-    data: null,
+    resultData: null,
     totalResults: 0,
   });
   const [queryParams, setQueryParams] = useState({
@@ -29,16 +29,16 @@ export function useOmdbAPISearch(
     const queryUrl = `${queryParams.url}&type=${queryParams.type}&page=${queryParams.page}`;
     fetch(queryUrl)
       .then((res) => res.json())
-      .then((responseData) => {
+      .then((data) => {
         if (cancelRequest) return;
-        if (responseData.Search) {
+        if (data.Search) {
           setResult(() => {
             return {
-              data: removeDuplicateResultsFromArray(
-                responseData.Search,
+              resultData: removeDuplicateResultsFromArray(
+                data.Search,
                 "imdbID"
               ),
-              totalResults: responseData.totalResults,
+              totalResults: data.totalResults,
             };
           });
           setIsSearchLoading(false);
@@ -47,7 +47,7 @@ export function useOmdbAPISearch(
           console.log("fetched");
         } else {
           setResult({
-            data: nullOmdbAPISearchResults,
+            resultData: nullOmdbAPISearchResults,
             totalResults: 0,
           });
           setIsSearchLoading(false);

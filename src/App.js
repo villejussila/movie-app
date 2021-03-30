@@ -14,7 +14,7 @@ const BASE_URL = `http://www.omdbapi.com/?apikey=${API_KEY}`;
 function App() {
   const [searchValue, setSearchValue] = useState("");
   const [searchType, setSearchType] = useState("");
-  const [hidden, setHidden] = useState(true);
+  const [hiddenPagination, setHiddenPagination] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [queryUrl, setQueryUrl] = useState("");
   const [queryResult, setQueryResult] = useState([]);
@@ -24,7 +24,7 @@ function App() {
   const SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchValue}`;
 
   const [
-    { data, totalResults },
+    { resultData, totalResults },
     setQueryParams,
     isSearchLoading,
     isSearchError,
@@ -44,11 +44,11 @@ function App() {
   }, [totalResults]);
 
   useEffect(() => {
-    if (isResult && data) {
-      setQueryResult(data);
-      setHidden(false);
+    if (isResult && resultData) {
+      setQueryResult(resultData);
+      setHiddenPagination(false);
     }
-  }, [data, isResult]);
+  }, [resultData, isResult]);
 
   const [
     infoResult,
@@ -95,15 +95,12 @@ function App() {
             onTextChange={(e) => setSearchValue(e.target.value)}
           />
           <SearchBtn onClick={() => handleClickSearch()} />
-          {/* <p>current page: {currentPage}</p>
-        <p>page: {page}</p>
-        <p>max pages: {maxPages}</p> */}
         </div>
         <FavoriteList />
       </nav>
       <main className="main">
         <Pagination
-          hidden={hidden}
+          hidden={hiddenPagination}
           currentPage={currentPage}
           maxPages={maxPages}
           gotoNextPage={() =>
