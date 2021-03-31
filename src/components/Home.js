@@ -13,7 +13,6 @@ function Home() {
   const [idInfo, setIdInfo] = useState("");
 
   const queryResult = useSelector((state) => state.queryResultReducer);
-  console.log(maxPages);
 
   useEffect(() => {
     if (!queryResult.isResultFound) {

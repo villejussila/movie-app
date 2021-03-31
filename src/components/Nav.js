@@ -21,6 +21,9 @@ function Nav() {
 
   const SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchValue}`;
 
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.currentPageReducer);
+
   const [
     result,
     setQueryParams,
@@ -28,9 +31,6 @@ function Nav() {
     isSearchError,
     hasSearched,
   ] = useOmdbAPISearch();
-
-  const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.currentPageReducer);
 
   useEffect(() => {
     setQueryParams({ url: queryUrl, page: currentPage, type: searchType });

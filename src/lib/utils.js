@@ -13,11 +13,11 @@ export function removeDuplicateResultsFromArray(array = [], id = "") {
   if (array == null) return;
   let seen = {};
   let returnArray = [];
-  array.forEach((movie) => {
-    let uniqueId = movie[id];
+  array.forEach((element) => {
+    let uniqueId = element[id];
     if (!seen[uniqueId]) {
       seen[uniqueId] = uniqueId;
-      returnArray.push(movie);
+      returnArray.push(element);
     }
   });
   return returnArray;
