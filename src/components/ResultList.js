@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 function ResultList({
   searchResults,
   searchLoading,
-  searchError,
+  fetchError,
   onClick,
   onCloseModal,
   infoResults,
@@ -15,18 +15,22 @@ function ResultList({
 }) {
   return (
     <div className="results">
-      {searchResults.map((result) => {
-        return (
-          <Result
-            key={result.imdbID}
-            title={result.Title}
-            year={result.Year}
-            posterUrl={result.Poster}
-            imdbID={result.imdbID}
-            onClick={onClick}
-          />
-        );
-      })}
+      {fetchError.isError ? (
+        <p>There was an error! {fetchError.errorMsg}</p>
+      ) : (
+        searchResults.map((result) => {
+          return (
+            <Result
+              key={result.imdbID}
+              title={result.Title}
+              year={result.Year}
+              posterUrl={result.Poster}
+              imdbID={result.imdbID}
+              onClick={onClick}
+            />
+          );
+        })
+      )}
       {infoResults ? (
         <ResultModal
           key={infoResults.imdbID}

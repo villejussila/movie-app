@@ -55,7 +55,7 @@ function Home() {
         <ResultList
           searchResults={queryResult.data}
           searchLoading={queryResult.isLoading}
-          searchError={queryResult.isError}
+          fetchError={queryResult.error}
           onClick={handleClickImage}
           infoResults={infoResult}
           isOpenModal={isOpenModal}

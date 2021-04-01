@@ -3,31 +3,30 @@ const initialState = {
   totalResults: 0,
   isResultFound: false,
   isLoading: false,
-  isError: false,
+  error: { isError: false, errorMsg: null },
 };
 
 const queryResultReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCHED_DATA":
       return {
-        ...initialState,
         data: action.payload.resultData || [],
         totalResults: action.payload.totalResults,
         isResultFound: action.payload.isResultFound,
         isLoading: false,
-        isError: false,
+        error: { irError: false, errorMsg: null },
       };
     case "FETCHING_DATA":
       return {
-        ...initialState,
+        ...state,
         isLoading: true,
       };
     case "FETCH_ERROR":
       return {
-        ...initialState,
+        ...state,
         isLoading: false,
         isResultFound: false,
-        isError: true,
+        error: { isError: true, errorMsg: action.payload },
       };
     default:
       return state;

@@ -28,7 +28,7 @@ function Nav() {
     result,
     setQueryParams,
     isSearchLoading,
-    isSearchError,
+    fetchError,
     hasSearched,
   ] = useOmdbAPISearch();
 
@@ -37,13 +37,20 @@ function Nav() {
   }, [setQueryParams, queryUrl, currentPage, searchType]);
 
   useEffect(() => {
-    if (isSearchLoading) {
-      dispatch(queryResultFetching());
+    if (isSearchLoading) dispatch(queryResultFetching());
+  }, [isSearchLoading, dispatch]);
+
+  useEffect(() => {
+    if (fetchError.isError) {
+      dispatch(queryResultError(fetchError.errorMsg));
     }
+  }, [dispatch, fetchError]);
+
+  useEffect(() => {
     if (hasSearched && result.resultData) {
       dispatch(queryResultFetched(result));
     }
-  }, [result, hasSearched, dispatch, isSearchLoading]);
+  }, [dispatch, hasSearched, result]);
 
   function handleKeyPress(e) {
     if (e.key !== "Enter") return;

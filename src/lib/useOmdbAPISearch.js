@@ -20,7 +20,10 @@ export function useOmdbAPISearch(
     type: initialSearchType,
   });
   const [isSearchLoading, setIsSearchLoading] = useState(false);
-  const [isSearchError, setIsSearchError] = useState(false);
+  const [searchError, setFetchError] = useState({
+    isError: false,
+    errorMsg: null,
+  });
   const [hasSearched, setHasSearched] = useState(true);
 
   useEffect(() => {
@@ -45,7 +48,7 @@ export function useOmdbAPISearch(
           });
           setIsSearchLoading(false);
           setHasSearched(true);
-          setIsSearchError(false);
+          setFetchError({ isError: false, errorMsg: null });
           console.log("fetched");
         } else {
           let nullData = nullOmdbAPISearchResults();
@@ -56,10 +59,10 @@ export function useOmdbAPISearch(
           });
           setIsSearchLoading(false);
           setHasSearched(true);
-          setIsSearchError(false);
+          setFetchError({ isError: false, errorMsg: null });
         }
       })
-      .catch((err) => {
+      .catch((error) => {
         if (cancelRequest) return;
         let nullData = nullOmdbAPISearchResults();
         setResult({
@@ -69,8 +72,8 @@ export function useOmdbAPISearch(
         });
         setIsSearchLoading(false);
         setHasSearched(true);
-        setIsSearchError(true);
-        console.log(err);
+        setFetchError({ isError: true, errorMsg: error });
+        console.log(error);
       });
 
     return () => {
@@ -78,5 +81,5 @@ export function useOmdbAPISearch(
     };
   }, [queryParams]);
 
-  return [result, setQueryParams, isSearchLoading, isSearchError, hasSearched];
+  return [result, setQueryParams, isSearchLoading, searchError, hasSearched];
 }
