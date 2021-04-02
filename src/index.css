@@ -6,17 +6,32 @@
 }
 
 .nav-bar {
-  height: 100px;
-  width: 100vw;
+  height: 125px;
+  min-width: 100vw;
   position: fixed;
   background-color: #2e2c2b;
   display: flex;
-  justify-content: center;
-  padding-top: 25px;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.logo {
+  color: white;
+  margin: 10px;
+}
+.logo-small {
+  display: none;
+  color: white;
+  text-decoration: none;
+}
+i a {
+  text-decoration: none;
 }
 .type-list {
   height: 30px;
+  display: flex;
   margin-right: 5px;
+  flex-shrink: 2;
 }
 #search-type-select {
   height: 100%;
@@ -28,9 +43,11 @@
 }
 .search-wrapper {
   display: flex;
+  min-width: 200px;
+  width: 50%;
+  margin: 10px;
 }
 .search-element {
-  display: flex;
   height: 30px;
   background-color: white;
 }
@@ -39,6 +56,11 @@
 }
 .search-element:active {
   background-color: #fff;
+}
+.search-bar {
+  width: 80%;
+  display: flex;
+  justify-content: center;
 }
 #search-button {
   text-align: center;
@@ -51,6 +73,7 @@
   /* box-shadow: 0 0 2px 1px #333; */
   padding: 0 10px;
   border-left: 1px solid #6c6c7a;
+  flex-shrink: 2;
 }
 #search-button:focus {
   /* border: none; */
@@ -61,10 +84,10 @@
 }
 #search-input {
   border-radius: 10px 0 0 10px;
-  width: 300px;
   border: none;
   font-size: 1rem;
   padding-left: 10px;
+  width: 100%;
 }
 #search-input:focus {
   outline: none;
@@ -76,8 +99,10 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #6c6c7a;
+  background-color: rgb(238, 238, 238);
+  /* background-color: #6c6c7a; */
   min-height: 100vh;
+  min-width: 100vw;
 }
 .results {
   display: flex;
@@ -86,11 +111,12 @@
   flex-wrap: wrap;
   max-width: 1800px;
   margin-top: 100px;
+  min-width: 100vw;
 }
 .pagination {
   display: flex;
   position: fixed;
-  top: 100px;
+  top: 125px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -127,4 +153,27 @@
 .blur {
   backdrop-filter: blur(8px);
   transition: backdrop-filter 0.5s ease-in-out;
+}
+.favorites {
+  color: white;
+}
+.favorites p {
+  margin: 0 10px;
+}
+.favorites a {
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+}
+
+@media only screen and (max-width: 550px) {
+  .logo {
+    display: none;
+  }
+  .logo-small {
+    display: flex;
+  }
+  a {
+    text-decoration: none;
+  }
 }

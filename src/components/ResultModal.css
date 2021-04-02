@@ -1,7 +1,7 @@
 .modal {
   box-sizing: border-box;
   position: fixed;
-  top: 20%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.925);
@@ -23,12 +23,16 @@
   /* justify-self: flex-end; */
   align-self: flex-end;
   border: none;
+  position: fixed;
 }
 .modal button:focus {
   outline: none;
 }
 .modal button:active {
   color: #2e2c2b;
+}
+.modal-content {
+  margin-top: 25px;
 }
 .modal p {
   padding: 0 0 1rem;
@@ -45,4 +49,12 @@
   bottom: 0;
   z-index: 1000;
   backdrop-filter: blur(5px);
+}
+
+@media only screen and (max-width: 550px) {
+  .modal {
+    width: 250px;
+    height: 350px;
+    overflow: auto;
+  }
 }

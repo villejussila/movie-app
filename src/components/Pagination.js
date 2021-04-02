@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { gotoNextPage, gotoPreviousPage } from "../actions";
 
 function Pagination({ hidden, maxPages }) {
   const [scrollPos, setScrollPos] = useState(0);
-  window.addEventListener("scroll", () => {
-    setScrollPos(window.pageYOffset);
-  });
+
+  let location = useLocation();
+
+  useEffect(() => {
+    let cancel = false;
+    window.addEventListener("scroll", () => {
+      if (cancel) return;
+      setScrollPos(window.pageYOffset);
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [location]);
 
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.currentPageReducer);

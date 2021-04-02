@@ -81,5 +81,12 @@ export function useOmdbAPISearch(
     };
   }, [queryParams]);
 
-  return [result, setQueryParams, isSearchLoading, searchError, hasSearched];
+  return [
+    result,
+    setQueryParams,
+    isSearchLoading,
+    searchError,
+    hasSearched,
+    setHasSearched,
+  ];
 }

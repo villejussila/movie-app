@@ -10,11 +10,9 @@ function Result({ title, year, posterUrl, imdbID, onClick }) {
           <h3>
             {title} ({year})
           </h3>
-          <img
-            src={posterUrl || null}
-            alt={title || null}
-            onClick={() => onClick(imdbID)}
-          />
+          <div className="found-result-info" onClick={() => onClick(imdbID)}>
+            <img src={posterUrl || null} alt={title || null} />
+          </div>
         </div>
       ) : (
         <div className="result-not-found">

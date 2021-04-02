@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { resetToFirstPage } from "../actions";
 import SearchInput from "./SearchInput";
 import SearchBtn from "./SearchBtn";
@@ -7,6 +8,7 @@ import {
   queryResultFetched,
   queryResultFetching,
   queryResultError,
+  initHomePage,
 } from "../actions";
 import TypeList from "./TypeList";
 import Favorites from "./Favorites";
@@ -30,6 +32,7 @@ function Nav() {
     isSearchLoading,
     fetchError,
     hasSearched,
+    setHasSearched,
   ] = useOmdbAPISearch();
 
   useEffect(() => {
@@ -63,10 +66,19 @@ function Nav() {
     dispatch(resetToFirstPage());
     setQueryUrl(SEARCH_URL);
   }
-
+  function handleClickLogo() {
+    // setSearchValue(null);
+    // setHasSearched(false);
+    // dispatch(initHomePage(true));
+    console.log("clicked");
+  }
   return (
     <div className="Nav">
       <nav className="nav-bar">
+        <Link to="/">
+          <i className="fas fa-film fa-5x logo" onClick={handleClickLogo}></i>
+          <i className="fas fa-film fa-2x logo-small"></i>
+        </Link>
         <div className="search-wrapper">
           <TypeList
             onChangeSearchType={(e) => {
@@ -74,11 +86,13 @@ function Nav() {
               setSearchType(e.target.value);
             }}
           />
-          <SearchInput
-            onKeyPress={handleKeyPress}
-            onTextChange={(e) => setSearchValue(e.target.value)}
-          />
-          <SearchBtn onClick={() => handleClickSearch()} />
+          <div className="search-bar">
+            <SearchInput
+              onKeyPress={handleKeyPress}
+              onTextChange={(e) => setSearchValue(e.target.value)}
+            />
+            <SearchBtn onClick={() => handleClickSearch()} />
+          </div>
         </div>
         <Favorites />
       </nav>

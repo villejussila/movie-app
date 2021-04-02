@@ -38,3 +38,10 @@ export const resetToFirstPage = () => {
     type: "RESET_TO_FIRST_PAGE",
   };
 };
+//Initialize home page actions
+export const initHomePage = (init) => {
+  return {
+    type: "INIT_HOME_PAGE",
+    action: init,
+  };
+};

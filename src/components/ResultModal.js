@@ -20,17 +20,19 @@ function ResultModal({
         <button onClick={onClose}>
           <i className="far fa-window-close fa-2x"></i>
         </button>
-        {infoLoading ? (
-          <p className="loading">Loading...</p>
-        ) : (
-          <>
-            <h3>{title}</h3>
-            <p>{year}</p>
-            <p>IMDb rating: {rating}</p>
-            <p>{plot}</p>
-            <p>Starring: {actors}</p>
-          </>
-        )}
+        <div className="modal-content">
+          {infoLoading ? (
+            <p className="loading">Loading...</p>
+          ) : (
+            <>
+              <h3>{title}</h3>
+              <p>{year}</p>
+              <p>IMDb rating: {rating}</p>
+              <p>{plot}</p>
+              <p>Starring: {actors}</p>
+            </>
+          )}
+        </div>
       </div>
     </>,
     document.getElementById("portal")
