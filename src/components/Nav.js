@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { resetToFirstPage } from "../actions";
 import SearchInput from "./SearchInput";
 import SearchBtn from "./SearchBtn";
@@ -8,10 +8,8 @@ import {
   queryResultFetched,
   queryResultFetching,
   queryResultError,
-  initHomePage,
 } from "../actions";
 import TypeList from "./TypeList";
-import Favorites from "./Favorites";
 import { useOmdbAPISearch } from "../lib/useOmdbAPISearch";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -32,7 +30,6 @@ function Nav() {
     isSearchLoading,
     fetchError,
     hasSearched,
-    setHasSearched,
   ] = useOmdbAPISearch();
 
   useEffect(() => {
@@ -55,21 +52,22 @@ function Nav() {
     }
   }, [dispatch, hasSearched, result]);
 
+  let history = useHistory();
+
   function handleKeyPress(e) {
     if (e.key !== "Enter") return;
     if (!searchValue) return;
     dispatch(resetToFirstPage());
     setQueryUrl(SEARCH_URL);
+    history.push("/search");
   }
   function handleClickSearch() {
     if (!searchValue) return;
     dispatch(resetToFirstPage());
     setQueryUrl(SEARCH_URL);
+    history.push("/search");
   }
   function handleClickLogo() {
-    // setSearchValue(null);
-    // setHasSearched(false);
-    // dispatch(initHomePage(true));
     console.log("clicked");
   }
   return (
@@ -94,7 +92,9 @@ function Nav() {
             <SearchBtn onClick={() => handleClickSearch()} />
           </div>
         </div>
-        <Favorites />
+        <Link to="/favorites">
+          <p>Favorites</p>
+        </Link>
       </nav>
     </div>
   );

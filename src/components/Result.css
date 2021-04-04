@@ -44,7 +44,7 @@
   align-items: flex-start;
 }
 /*TODO: remove images when small screen, more like a list */
-@media only screen and (max-width: 520px) {
+@media only screen and (max-width: 550px) {
   .found-result {
     width: 80%;
     height: 100px;
@@ -81,5 +81,28 @@
   .found-result-info::after {
     content: "Click for info";
     margin-right: 2px;
+    cursor: pointer;
+  }
+}
+@media only screen and (orientation: landscape) and (min-device-width: 360px) and (max-device-width: 720px) {
+  .found-result {
+    width: 80%;
+    height: 100px;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .found-result img {
+    height: 100%;
+    width: auto;
+    margin-right: 10px;
+  }
+  .found-result-info {
+    display: flex;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
   }
 }

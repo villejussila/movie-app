@@ -29,7 +29,7 @@ function Pagination({ hidden, maxPages }) {
     dispatch(gotoNextPage(maxPages));
   }
   return (
-    <div className={scrollPos > 50 ? "pagination blur" : "pagination"}>
+    <div className={scrollPos > 20 ? "pagination blur" : "pagination"}>
       <div className="pagination-buttons">
         <button
           className="pagination-button"

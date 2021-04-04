@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function Favorites() {
   return (
-    <div className="favorites">
-      <Link to="favorites">
-        <p>Favorites</p>
-      </Link>
+    <div className="main">
+      <div className="favorites">
+        <h1>Favorites</h1>
+      </div>
     </div>
   );
 }

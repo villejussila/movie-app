@@ -6,11 +6,11 @@ function Result({ title, year, posterUrl, imdbID, onClick }) {
   return (
     <>
       {isMovieFound ? (
-        <div className="found-result">
+        <div className="found-result" onClick={() => onClick(imdbID)}>
           <h3>
             {title} ({year})
           </h3>
-          <div className="found-result-info" onClick={() => onClick(imdbID)}>
+          <div className="found-result-info">
             <img src={posterUrl || null} alt={title || null} />
           </div>
         </div>

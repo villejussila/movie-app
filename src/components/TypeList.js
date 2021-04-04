@@ -2,10 +2,11 @@ import React from "react";
 
 function TypeList({ onChangeSearchType }) {
   return (
-    <div className="type-list">
+    <div className="search-type-list">
       <select
         name="search-type"
         id="search-type-select"
+        tabIndex="2"
         onChange={(e) => onChangeSearchType(e)}
       >
         <option value="">All</option>
