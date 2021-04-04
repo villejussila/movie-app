@@ -46,6 +46,7 @@ export function useOmdbAPISearch(
               isResultFound: true,
             };
           });
+          // console.log(result);
           setIsSearchLoading(false);
           setHasSearched(true);
           setFetchError({ isError: false, errorMsg: null });

@@ -3,8 +3,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  /* overflow-x: hidden !important; */
 }
-
+body {
+  overflow-x: hidden;
+}
 .nav-bar {
   height: 125px;
   min-width: 100vw;
@@ -31,10 +34,10 @@ i a {
   height: 30px;
   display: flex;
   margin-right: 5px;
-  flex-shrink: 2;
 }
 #search-type-select {
   height: 100%;
+  width: fit-content;
 }
 #search-type-select:focus {
   border: none;
@@ -101,8 +104,8 @@ i a {
   align-items: center;
   background-color: rgb(238, 238, 238);
   /* background-color: #6c6c7a; */
-  min-height: 100vh;
-  min-width: 100vw;
+  /* min-height: 100vh;
+  min-width: 100vw; */
 }
 .results {
   display: flex;
@@ -112,6 +115,8 @@ i a {
   max-width: 1800px;
   margin-top: 100px;
   min-width: 100vw;
+  min-height: 100vh;
+  /* margin-left: -12px; */
 }
 .pagination {
   display: flex;
@@ -122,6 +127,7 @@ i a {
   align-items: center;
   height: 70px;
   width: 100vw;
+  overflow: hidden;
 }
 .pagination-button {
   display: none;
@@ -130,6 +136,7 @@ i a {
   width: 50px;
   height: 25px;
   margin-top: 5px;
+  overflow: hidden;
 }
 .pagination-buttons {
   background-color: #6c6c7a00;
@@ -166,7 +173,7 @@ i a {
   margin: 10px;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 520px) {
   .logo {
     display: none;
   }

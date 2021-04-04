@@ -5,9 +5,9 @@
 }
 .found-result {
   margin: 5px;
-  width: 350px;
-  height: 550px;
-  overflow: auto;
+  width: 250px;
+  height: 450px;
+  overflow-x: hidden;
   background-color: #26262e;
   border-radius: 5px;
   box-shadow: 0 0 5px 2px #282e26;
@@ -27,33 +27,59 @@
   margin: 0 auto;
   margin-bottom: 10px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.found-result img {
+  width: 95%;
 }
 .result-not-found {
-  color: white;
+  color: black;
   font-weight: lighter;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 /*TODO: remove images when small screen, more like a list */
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 520px) {
   .found-result {
-    width: 260px;
+    width: 80%;
     height: 100px;
-  }
-  .found-result {
     font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   .found-result img {
-    width: 20px;
-    height: auto;
-    display: none;
+    height: 100%;
+    width: auto;
+    margin-right: 10px;
   }
   .found-result-info {
-    width: inherit;
-    height: inherit;
     display: flex;
+    height: inherit;
     justify-content: center;
     align-items: center;
+    margin: 0;
+  }
+  .found-result h3 {
+    margin: 10px 5px;
+    flex-shrink: 10;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .found-result {
+    width: 80vw;
+    height: 80px;
+  }
+  .found-result img {
+    display: none;
   }
   .found-result-info::after {
     content: "Click for info";
+    margin-right: 2px;
   }
 }
