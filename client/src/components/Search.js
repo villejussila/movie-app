@@ -4,8 +4,6 @@ import ResultList from "./ResultList";
 import Pagination from "./Pagination";
 import { useOmdbAPIGetInfo } from "../lib/useOmdbAPIGetInfo";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-// const BASE_URL = `http://www.omdbapi.com/?apikey=${API_KEY}`;
 const BASE_URL = `http://localhost:5000/api/v1/info?`;
 
 function Search() {
