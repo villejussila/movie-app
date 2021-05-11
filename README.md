@@ -7,6 +7,12 @@ Frontend on Netlify
 
 Live site: https://searchformovies.netlify.app/
 
-### Technologies used
+## Technologies used
+
+### Front end
 
 React, Redux, react-router, custom hooks
+
+### Back end
+
+Node.js/Express
