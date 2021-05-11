@@ -50,7 +50,7 @@ export function useOmdbAPISearch(
           setIsSearchLoading(false);
           setHasSearched(true);
           setFetchError({ isError: false, errorMsg: null });
-          console.log("fetched");
+          // console.log("fetched");
         } else {
           let nullData = nullOmdbAPISearchResults();
           setResult({

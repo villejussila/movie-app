@@ -17,7 +17,7 @@ function Nav() {
   const [searchType, setSearchType] = useState("");
   const [queryUrl, setQueryUrl] = useState("");
 
-  const SEARCH_URL = `http://localhost:5000/api/v1/search?s=${searchValue}`;
+  const SEARCH_URL = `https://stormy-badlands-85674.herokuapp.com/api/v1/search?s=${searchValue}`;
 
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.currentPageReducer);
@@ -66,7 +66,7 @@ function Nav() {
     history.push("/search");
   }
   function handleClickLogo() {
-    console.log("clicked");
+    // console.log("clicked");
   }
   return (
     <div className="Nav">
@@ -90,9 +90,11 @@ function Nav() {
             <SearchBtn onClick={() => handleClickSearch()} />
           </div>
         </div>
+        {/* 
+        NOT YET IMPLEMENTED
         <Link to="/favorites">
           <p>Favorites</p>
-        </Link>
+        </Link> */}
       </nav>
     </div>
   );

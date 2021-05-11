@@ -16,7 +16,7 @@ export function useOmdbAPIGetInfo(initialUrl) {
         setInfoResult(data);
         setIsInfoLoading(false);
         setIsInfoError(false);
-        console.log("fetched info");
+        // console.log("fetched info");
       })
       .catch((err) => {
         setIsInfoError(true);
