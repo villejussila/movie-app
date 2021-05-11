@@ -13,6 +13,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/Search" exact component={Search} />
           <Route path="/favorites" component={Favorites} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     </Router>

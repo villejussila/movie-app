@@ -5,7 +5,6 @@ import Pagination from "./Pagination";
 import { useOmdbAPIGetInfo } from "../lib/useOmdbAPIGetInfo";
 
 const BASE_URL = "https://stormy-badlands-85674.herokuapp.com/api/v1/info?";
-//process.env.NODE_ENV === 'production';
 
 function Search() {
   const [hiddenPagination, setHiddenPagination] = useState(true);
