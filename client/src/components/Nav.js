@@ -12,14 +12,14 @@ import {
 import TypeList from "./TypeList";
 import { useOmdbAPISearch } from "../lib/useOmdbAPISearch";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
 
 function Nav() {
   const [searchValue, setSearchValue] = useState("");
   const [searchType, setSearchType] = useState("");
   const [queryUrl, setQueryUrl] = useState("");
 
-  const SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchValue}`;
+  // const SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchValue}`;
+  const SEARCH_URL = `http://localhost:5000/api/v1/search?s=${searchValue}`;
 
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.currentPageReducer);
