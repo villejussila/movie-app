@@ -14,7 +14,7 @@ body {
   position: fixed;
   background-color: #2e2c2b;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
